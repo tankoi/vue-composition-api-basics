@@ -1,0 +1,10 @@
+VS Code extensions:
+    - Make Apps Theme
+    - Material Icon Theme
+    - Vue Volar extension Pack
+    - Split HTML Attributes
+
+Add project to git:
+git remote add origin https://github.com/tankoi/vue-composition-api-basics.git
+git branch -M main
+git push -u origin main
