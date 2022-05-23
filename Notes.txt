@@ -1,10 +1,91 @@
-VS Code extensions:
+- VS Code extensions:
     - Make Apps Theme
     - Material Icon Theme
     - Vue Volar extension Pack
     - Split HTML Attributes
 
-Add project to git:
+- Add project to git:
 git remote add origin https://github.com/tankoi/vue-composition-api-basics.git
 git branch -M main
 git push -u origin main
+
+- Options API
+export default {
+  data() {
+    return {
+      counter: 0
+    }
+  },
+  methods: {
+    decreaseCounter() {
+      this.counter--;
+    },
+    increaseCounter() {
+      this.counter++;
+    }
+  }
+}
+
+- Composition API
+<script setup>
+import { ref, reactive } from 'vue'
+
+const counter = ref(0),
+      counterTitle = ref('My Counter')
+
+const increaseCounter = () => {
+  counter.value++
+}
+
+const decreaseCounter = () => {
+  counter.value--
+}
+</script>
+
+- Use `reactive` for objects and `ref` for others
+
+- Passing the event arguments: 
+<button @click="increaseCounter(1, $event)" class="btn">+</button>
+...
+const increaseCounter = (amount, e) => {
+  console.log(e);
+  counterData.count += amount
+}
+
+- Computed variable:
+const oddOrEven = computed(() => {
+    if (counterData.count % 2 === 0) return 'even'
+    return 'odd'
+})
+
+- Property wathcer:
+watch(() => counterData.count, (newCount, oldCount) => {
+  console.log('newCount', newCount)
+})
+
+- Mounted Hooks
+onBeforeMount(() => {
+  console.log('onBeforeMount')
+})
+onMounted(() => {
+  console.log('onMount')
+})
+onBeforeUnmount(() => {
+  console.log('onBeforeUnmount')
+})
+onUnmounted(() => {
+  console.log('onUnmounted')
+})
+onActivated(() => {
+  console.log('onActivated')
+})
+onDeactivated(() => {
+  console.log('onDeactivated')
+})
+
+- Local custom directives
+const vAutofocus = {    // v-autofocus
+  mounted: (el) => {
+    el.focus()
+  }
+}

@@ -5,6 +5,7 @@
   </nav>
 
   <RouterView />
+  
 </template>
 
 <style>
