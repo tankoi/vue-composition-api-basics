@@ -3,6 +3,7 @@
     - Material Icon Theme
     - Vue Volar extension Pack
     - Split HTML Attributes
+	- Duplicate action
 
 - Add project to git:
 git remote add origin https://github.com/tankoi/vue-composition-api-basics.git
@@ -88,4 +89,11 @@ const vAutofocus = {    // v-autofocus
   mounted: (el) => {
     el.focus()
   }
+}
+
+- NextTick (it is an async method)
+const increaseCounter = async (amount, e) => {
+	counterData.count += amount
+  	await nextTick()
+	console.log('do something when counter has been updated in the dom');
 }
