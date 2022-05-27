@@ -1,17 +1,23 @@
 <template>
   	<div class="modals">
     	<h1>Modals</h1>
-		<button @click="showModal = true">Show modal</button>
-		<teleport to=".modals-container">
-			<div
-			v-show="showModal"
-			class="modal"
-			>
-				<h1>This is a modal</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia excepturi doloribus et beatae consequatur voluptates itaque ad recusandae voluptatum quasi. Maiores modi consequatur repellat velit quidem dicta doloribus! Maiores, quia?</p>
-				<button @click="showModal = false">Hide modal</button>
+			<div>
+				<label>
+					Show dark modals?
+					<input 
+						v-model="showDarkModals" 
+						type="checkbox"
+					>
+				</label>
 			</div>
-		</teleport>
+		<button @click="showModal = true">Show modal</button>
+		<component 
+			v-model="showModal"
+			:is="showDarkModals ? ModalDark : Modal"
+			title="My modal title (via prop)"
+		>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia excepturi doloribus et beatae consequatur voluptates itaque ad recusandae voluptatum quasi. Maiores modi consequatur repellat velit quidem dicta doloribus! Maiores, quia?</p>
+		</component>
   	</div>
 </template>
 
@@ -21,15 +27,17 @@
 	import
 */
 import { ref } from 'vue'
-
+import Modal from '@/components/Modal.vue'
+import ModalDark from '@/components/ModalDark.vue'
 /*
 	modals
 */
+const showDarkModals = ref(false)
 const showModal = ref(false)
 
 </script>
 
-<style>
+<style scoped>
 .modal {
 	background-color: beige;
 	padding: 10px;

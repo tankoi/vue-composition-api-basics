@@ -97,3 +97,55 @@ const increaseCounter = async (amount, e) => {
   	await nextTick()
 	console.log('do something when counter has been updated in the dom');
 }
+
+- Slots
+<Modal v-if="showModal">
+  <template v-slot:title>My new title</template>
+  <!-- or: <template #title>My new title</template> -->
+  <p>Lorem ipsum ...</p>
+</Modal>
+
+// child component:
+<div class="modal">
+  <h1>
+    <slot name="title"/>
+  </h1>
+  <slot/>
+  <button>Hide modal</button>
+</div>
+
+-- use slots in script:
+import { useSlots } from 'vue'
+
+const slots = useSlots()
+
+- Props
+const props = defineProps(['title'])
+or
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'No title specified'
+  }
+})
+
+- Emits
+const handleButtonClick = () => {
+  emit('hideModal')
+}
+
+- Dynamic component
+<component 
+  v-model="showModal"
+  :is="showDarkModals ? ModalDark : Modal"
+  title="My modal title (via prop)"
+>
+  <p>Lorem ipsum ...</p>
+</component>
+
+- Provide/inject - send data from parent to all child components 
+-- parent:
+provide('userData', userData)
+
+-- grandchild:
+const userData = inject('userData')
