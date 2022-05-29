@@ -149,3 +149,18 @@ provide('userData', userData)
 
 -- grandchild:
 const userData = inject('userData')
+
+- Composable (like mixins in VueJS 2)
+import { useCounter} from '@/use/useCounter'
+
+const {counterData, increaseCounter} = useCounter();
+<button
+  @click="increaseCounter(1)"
+  class="counter-button"
+>
+  {{counterData.count}}
+</button>
+
+-- vue library: vueuse.org
+
+- 
